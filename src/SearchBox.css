@@ -1,0 +1,7 @@
+.search {
+    position: relative;
+    z-index: 1;
+    color: rgb(28, 26, 26);
+    text-align: center;
+    margin-bottom: 25px;
+  }
