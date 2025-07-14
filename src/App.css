@@ -15,3 +15,143 @@ body, html {
   overflow: hidden;
   font-family: Arial, sans-serif;
 }
+
+/* Dynamic Theming */
+.weather-root.theme-hot {
+  background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
+  animation: bgHot 10s ease-in-out infinite alternate;
+}
+.weather-root.theme-cold {
+  background: linear-gradient(135deg, #83a4d4 0%, #b6fbff 100%);
+  animation: bgCold 10s ease-in-out infinite alternate;
+}
+.weather-root.theme-mild {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  animation: bgMild 10s ease-in-out infinite alternate;
+}
+.weather-root.theme-night {
+  background: linear-gradient(135deg, #232526 0%, #414345 100%);
+  animation: bgNight 10s ease-in-out infinite alternate;
+  color: #f3f3f3;
+}
+
+@keyframes bgHot {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+@keyframes bgCold {
+  0% { background-position: 100% 0%; }
+  100% { background-position: 0% 100%; }
+}
+@keyframes bgMild {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+@keyframes bgNight {
+  0% { background-position: 0% 100%; }
+  100% { background-position: 100% 0%; }
+}
+
+/* Glassmorphism Card */
+.card {
+  background: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s;
+  animation: floatCard 3s ease-in-out infinite alternate;
+}
+@keyframes floatCard {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-12px); }
+}
+.card:hover, .card:active {
+  transform: scale(1.04) translateY(-8px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+
+/* Responsive Card */
+@media (max-width: 600px) {
+  .card {
+    max-width: 95vw !important;
+    min-width: 0 !important;
+    padding: 0.5rem !important;
+  }
+}
+
+/* Thermometer and Temp Animation */
+.thermometer {
+  width: 16px;
+  height: 80px;
+  background: linear-gradient(to top, #ff5e62 0%, #ff9966 100%);
+  border-radius: 8px;
+  margin: 0 auto 1rem auto;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+.thermometer-cold {
+  background: linear-gradient(to top, #83a4d4 0%, #b6fbff 100%);
+}
+.thermometer-mild {
+  background: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}
+.thermometer-night {
+  background: linear-gradient(to top, #232526 0%, #414345 100%);
+}
+.thermometer-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 8px;
+  animation: pulseTemp 1.5s infinite alternate;
+}
+@keyframes pulseTemp {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.2); }
+}
+.temp-text {
+  font-size: 2.2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff9966, #ff5e62);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulseTemp 1.5s infinite alternate;
+}
+.temp-text-cold {
+  background: linear-gradient(90deg, #83a4d4, #b6fbff);
+}
+.temp-text-mild {
+  background: linear-gradient(90deg, #a8edea, #fed6e3);
+}
+.temp-text-night {
+  background: linear-gradient(90deg, #232526, #414345);
+}
+
+/* Button and Card Hover/Tap Animations */
+button, .MuiButton-root {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+button:hover, .MuiButton-root:hover, button:active, .MuiButton-root:active {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(255, 94, 98, 0.15);
+}
+
+/* Responsive root */
+.weather-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 600px) {
+  .weather-root {
+    padding: 0.5rem;
+  }
+}
